@@ -1,0 +1,40 @@
+name: CI Testing on Push
+
+on:
+  push:
+    branches:
+      - main  # Or 'master', depending on your default branch
+      - develop
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest  # Use a standard virtual environment
+
+    steps:
+    - name: ⬇ Checkout code
+      uses: actions/checkout@v4
+
+    - name: 🐍 Set up Python
+      # Use a specific Python version your project needs
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x' 
+
+    - name: 📦 Install Dependencies (if any)
+      # Replace 'pip install -r requirements.txt' with your language's command (e.g., 'npm install', 'go get .')
+      run: |
+        python -m pip install --upgrade pip
+        # If your project has dependencies, uncomment the line below:
+        # pip install -r requirements.txt 
+
+    - name: ▶ Run Tests
+      # Replace 'python tests.py' with the actual command to run your tests 
+      run: |
+        echo "Starting tests..."
+        # Example for a simple Python test file:
+        # python tests.py
+        # Example for a common Python testing tool (pytest):
+        # pip install pytest
+        # pytest
+        # For demonstration, we'll just show a success message:
+        echo "Tests passed successfully! (Replace this with your actual test command)"
